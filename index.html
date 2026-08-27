@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firstdraft Sites — Websites for local businesses, built before you ask</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F6;
+    --ink:#1A1A1A;
+    --teal:#2F6F5E;
+    --teal-dark:#204E42;
+    --clay:#E0602A;
+    --line:#DEDBD1;
+    --muted:#4A4E52;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;color-scheme:light;background:var(--paper);}
+  body{
+    background:var(--paper);
+    color:var(--teal);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  @media(max-width:600px){.wrap{padding:0 20px;}}
+
+  /* ---------- Skip link / focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,249,246,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .brand{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .brand .dot{color:var(--teal);}
+  nav .links{display:flex;gap:32px;align-items:center;}
+  nav .links a{
+    font-size:0.92rem;font-weight:500;text-decoration:none;color:var(--teal);
+    opacity:0.75;transition:opacity .15s;
+  }
+  nav .links a:hover{opacity:1;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--paper);
+    padding:11px 20px;border-radius:3px;
+    font-size:0.88rem;font-weight:600;text-decoration:none;
+    border:none;cursor:pointer;
+    transition:transform .15s, background .15s;
+  }
+  .btn:hover{background:var(--teal-dark);transform:translateY(-1px);}
+  .btn-ghost{
+    background:transparent;color:var(--teal);border:1px solid var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  @media(max-width:760px){nav .links a:not(.btn){display:none;}}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  }
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-bottom:22px;
+  }
+  .eyebrow .swatch{width:8px;height:8px;background:var(--clay);border-radius:50%;}
+  h1.headline{font-size:clamp(2.1rem,4.2vw,3.4rem);}
+  h1.headline em{
+    font-style:normal;color:var(--teal);
+  }
+  .sub{
+    margin-top:20px;font-size:1.08rem;color:var(--muted);max-width:44ch;
+  }
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+
+  /* Browser mockup */
+  .mockup{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 24px 60px -24px rgba(21,26,33,0.28);
+  }
+  .mockup-bar{
+    display:flex;align-items:center;gap:8px;
+    padding:12px 14px;border-bottom:1px solid var(--line);
+    background:#F1F0EB;
+  }
+  .mockup-bar .dot{width:9px;height:9px;border-radius:50%;background:#DCD9D0;}
+  .mockup-url{
+    flex:1;margin-left:8px;
+    background:var(--white);border:1px solid var(--line);border-radius:4px;
+    padding:5px 10px;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .mockup-body{padding:26px 24px 30px;min-height:280px;transition:opacity .25s;}
+  .mockup-body h3{font-size:1.3rem;margin-bottom:6px;}
+  .mockup-body .tag{
+    display:inline-block;background:var(--teal);color:var(--white);
+    font-size:0.68rem;font-weight:600;padding:3px 9px;border-radius:3px;
+    margin-bottom:14px;letter-spacing:0.03em;
+  }
+  .mockup-body p{color:var(--muted);font-size:0.9rem;margin-bottom:16px;max-width:38ch;}
+  .mockup-cta{
+    display:inline-block;background:var(--clay);color:var(--white);
+    padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;
+  }
+  .mockup-tabs{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap;}
+  .mockup-tabs button{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+    padding:6px 10px;border-radius:20px;border:1px solid var(--line);
+    background:var(--white);color:var(--muted);cursor:pointer;
+    transition:all .15s;
+  }
+  .mockup-tabs button.active{
+    background:var(--ink);color:var(--paper);border-color:var(--ink);
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:80px 0;border-bottom:1px solid var(--line);}
+  .section-head{max-width:60ch;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.6rem,2.8vw,2.2rem);margin-top:10px;}
+  .section-head p{color:var(--muted);margin-top:14px;font-size:1rem;}
+
+  /* ---------- How it works ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  @media(max-width:800px){.steps{grid-template-columns:1fr;}}
+  .step{border-top:2px solid var(--ink);padding-top:18px;}
+  .step .num{font-family:'IBM Plex Mono',monospace;color:var(--clay);font-size:0.8rem;}
+  .step h3{font-size:1.15rem;margin:10px 0 8px;}
+  .step p{color:var(--muted);font-size:0.94rem;}
+
+  /* ---------- Why ---------- */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:700px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{background:var(--paper);padding:32px;}
+  .why-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .why-card p{color:var(--muted);font-size:0.92rem;}
+
+  /* ---------- Proof strip ---------- */
+  .proof{background:var(--ink);color:var(--paper);border-bottom:1px solid var(--line);}
+  .proof .wrap{padding:64px 32px;}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  @media(max-width:800px){.proof-grid{grid-template-columns:1fr;}}
+  .proof h2{color:var(--paper);}
+  .proof-item .stat{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--teal);}
+  .proof-item{border-top:1px solid rgba(250,249,246,0.2);padding-top:14px;}
+  .proof-item .label{color:rgba(250,249,246,0.85);font-size:0.9rem;margin-top:6px;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;}
+  @media(max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:0.82rem;font-weight:600;margin-bottom:6px;}
+  .field input, .field textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:4px;
+    font-family:'Inter',sans-serif;font-size:0.95rem;background:var(--white);
+  }
+  .field textarea{resize:vertical;min-height:100px;}
+  .contact-note{
+    background:var(--white);border:1px solid var(--line);border-radius:8px;padding:26px;
+  }
+  .contact-note .mono{display:block;margin-bottom:12px;}
+  .contact-note p{color:var(--muted);font-size:0.92rem;margin-bottom:10px;}
+
+  footer{padding:40px 0;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  footer p{color:var(--muted);font-size:0.85rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Firstdraft<span class="dot">·</span>Sites</div>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why this way</a>
+      <a href="#contact" class="btn">Get a free sample</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="swatch"></span><span class="mono">Web design, built on spec</span></div>
+      <h1 class="headline">We build your website <em>before</em> you agree to anything.</h1>
+      <p class="sub">Most web designers pitch a concept. We hand you a finished, working site for your actual business — free to look at — so you're deciding on something real, not a promise. Serving businesses across the Wasatch Front.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn">Request your free sample</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+
+    <div class="mockup" id="mockup">
+      <div class="mockup-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <div class="mockup-url" id="mockup-url">yourbusiness.com</div>
+      </div>
+      <div class="mockup-body" id="mockup-body">
+        <span class="tag" id="mockup-tag">LANDSCAPING</span>
+        <h3 id="mockup-title">Green Ridge Landscaping</h3>
+        <p id="mockup-text">Free estimates, seasonal cleanups, and lawn care serving the whole county. Book online in under a minute.</p>
+        <span class="mockup-cta">Get a free quote</span>
+      </div>
+      <div class="wrap" style="padding:0 24px 22px;">
+        <div class="mockup-tabs" id="mockup-tabs">
+          <button class="active" data-i="0">Landscaping</button>
+          <button data-i="1">Plumbing</button>
+          <button data-i="2">Bakery</button>
+          <button data-i="3">HVAC</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">The process</span>
+      <h2>Three steps, in this order — on purpose</h2>
+      <p>The order matters. You never pay for a concept — only for something you've already seen working.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>We build it first</h3>
+        <p>A real, working sample site for your business, live on the web — done before we ever reach out to you.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>You look it over</h3>
+        <p>Click through it, show your team, picture it live. No login, no meeting required to see the work.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>You decide</h3>
+        <p>Like it — we hand over the site under your own domain, hosted or handed off, your call. Don't — no hard feelings, no charge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Why this way</span>
+      <h2>Built for owners who don't have time for sales calls</h2>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0 32px;">
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>You own what you get</h3>
+        <p>Take the files and run them anywhere, or let us keep it hosted and maintained — that decision comes after you've seen the site, not before.</p>
+      </div>
+      <div class="why-card">
+        <h3>Your own domain, not a subdomain</h3>
+        <p>We'll walk you through buying a domain and connecting it — usually live same day, no technical background needed.</p>
+      </div>
+      <div class="why-card">
+        <h3>No retainer to see the work</h3>
+        <p>The sample is free to view. You only pay once you decide the site is worth having.</p>
+      </div>
+      <div class="why-card">
+        <h3>Built for how people actually find you</h3>
+        <p>Fast-loading, mobile-first, and set up so a customer can call, message, or book without hunting for the button.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof" style="border-bottom:none;">
+  <div class="wrap">
+    <span class="mono" style="color:rgba(250,249,246,0.85);">A young business, growing on purpose</span>
+    <h2 style="margin-top:10px;">Every site starts the same way — unasked for, and already working</h2>
+    <div class="proof-grid" style="margin-top:44px;">
+      <div class="proof-item">
+        <div class="stat">100%</div>
+        <div class="label">of sample sites are fully working before first contact</div>
+      </div>
+      <div class="proof-item">
+        <div class="stat">0</div>
+        <div class="label">obligation to buy after seeing your sample</div>
+      </div>
+      <div class="proof-item">
+        <div class="stat">1 day</div>
+        <div class="label">typical turnaround to connect your own domain</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Get in touch</span>
+      <h2>Want a free sample built for your business?</h2>
+      <p>Tell us a bit about the business and we'll build a working sample — no charge, no obligation.</p>
+    </div>
+    <div class="contact-grid">
+      <form action="mailto:brightonpalm@gmail.com" method="post" enctype="text/plain">
+        <div class="field">
+          <label for="name">Business name</label>
+          <input id="name" name="Business_Name" type="text" placeholder="e.g. Green Ridge Landscaping" required>
+        </div>
+        <div class="field">
+          <label for="email">Email or phone</label>
+          <input id="email" name="Contact_Info" type="text" placeholder="How should we reach you?" required>
+        </div>
+        <div class="field">
+          <label for="msg">Anything we should know?</label>
+          <textarea id="msg" name="Message" placeholder="Industry, current website (if any), what you're hoping for"></textarea>
+        </div>
+        <button type="submit" class="btn">Send request</button>
+      </form>
+      <div class="contact-note">
+        <span class="mono">Prefer to just talk?</span>
+        <p>Call or text <strong>801-698-5222</strong>, or email <strong>brightonpalm@gmail.com</strong>.</p>
+        <p>Serving businesses across the Wasatch Front.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Firstdraft Sites — Wasatch Front, Utah.</p>
+    <p class="mono">Built with GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+  const samples = [
+    {tag:"LANDSCAPING", title:"Green Ridge Landscaping", text:"Free estimates, seasonal cleanups, and lawn care serving the whole county. Book online in under a minute.", url:"greenridgelandscaping.com", cta:"Get a free quote"},
+    {tag:"PLUMBING", title:"Coastline Plumbing Co.", text:"24/7 emergency calls, licensed and insured, serving three counties since 2010.", url:"coastlineplumbing.com", cta:"Call now"},
+    {tag:"BAKERY", title:"Maple & Rye Bakery", text:"Fresh sourdough daily, custom cakes by order, and a menu that changes with the season.", url:"mapleandrye.com", cta:"See the menu"},
+    {tag:"HVAC", title:"Coolstream HVAC", text:"Same-day repairs, seasonal tune-ups, and financing on new installs.", url:"coolstreamhvac.com", cta:"Schedule service"}
+  ];
+  const tabs = document.querySelectorAll('#mockup-tabs button');
+  const body = document.getElementById('mockup-body');
+  tabs.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      tabs.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const s = samples[btn.dataset.i];
+      body.style.opacity = 0;
+      setTimeout(()=>{
+        document.getElementById('mockup-tag').textContent = s.tag;
+        document.getElementById('mockup-title').textContent = s.title;
+        document.getElementById('mockup-text').textContent = s.text;
+        document.getElementById('mockup-url').textContent = s.url;
+        document.querySelector('.mockup-cta').textContent = s.cta;
+        body.style.opacity = 1;
+      }, 150);
+    });
+  });
+</script>
+
+</body>
+</html>
